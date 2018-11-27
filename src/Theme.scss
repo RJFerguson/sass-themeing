@@ -41,6 +41,10 @@ $themes: (
   @return map-get($theme-map, $key);
 }
 
+/*
+ * Normal App Styling 
+ */
+
 .App {
   text-align: center;
 }
