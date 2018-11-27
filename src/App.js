@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import logoDark from "./svg/logoDark.svg";
+import logoLight from "./svg/logoLight.svg";
 import "./Theme.scss";
 
 class App extends Component {
@@ -30,7 +31,11 @@ class App extends Component {
     return (
       <div className={`theme-${this.state.theme}`}>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {this.state.theme === "light" ? (
+            <img src={logoLight} className="App-logo" alt="logo" />
+          ) : (
+            <img src={logoDark} className="App-logo" alt="logo" />
+          )}
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
