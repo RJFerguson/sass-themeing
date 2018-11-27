@@ -1,11 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./Theme.scss";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: "light"
+    };
+  }
+  componentDidMount() {
+    const cachedHits = localStorage.getItem("theme");
+    if (cachedHits) {
+      this.setState({ theme: JSON.parse(cachedHits) });
+      return;
+    }
+  }
+
+  buttonClicked = () => {
+    if (this.state.theme === "dark") {
+      localStorage.setItem("theme", JSON.stringify("light"));
+      this.setState({ theme: "light" });
+    } else {
+      localStorage.setItem("theme", JSON.stringify("dark"));
+      this.setState({ theme: "dark" });
+    }
+  };
   render() {
     return (
-      <div className="App">
+      <div className={`theme-${this.state.theme}`}>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -19,6 +42,9 @@ class App extends Component {
           >
             Learn React
           </a>
+          <br />
+          <br />
+          <button onClick={this.buttonClicked}>CLICK</button>
         </header>
       </div>
     );
